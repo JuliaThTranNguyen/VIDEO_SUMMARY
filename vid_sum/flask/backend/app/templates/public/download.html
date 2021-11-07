@@ -1,0 +1,45 @@
+{% extends "public/templates/public.html" %}
+<!--  -->
+{% block title %} Download {% endblock %}
+
+<!--  -->
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Download</h1>
+        </div>
+    </div>
+</div>
+<title>Python Flask - Video Upload and Play Example</title>
+<h2>Select a video to download and play</h2>
+<p>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+</p>
+{% if filename %}
+<div style="margin: 10px auto;">
+    <video autoplay="autoplay" controls="controls" preload="preload">
+			<source src="{{ url_for('display_video', filename=filename) }}" type="video/mp4"></source>
+		</video>
+</div>
+{% endif %}
+<form method="GET" action="/download_vid" enctype="multipart/form-data">
+    <dl>
+        <p>
+            Link: <input type="file" name="file " name=" download_path " autocomplete="off" required>
+        </p>
+    </dl>
+    <p>
+        <input type="submit" value="Click to Download">
+    </p>
+</form>
+
+<a href="/">Home</a>
+
+<a href="/">Home</a> {% endblock %}

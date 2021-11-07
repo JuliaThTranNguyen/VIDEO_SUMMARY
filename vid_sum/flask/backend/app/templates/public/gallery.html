@@ -1,0 +1,26 @@
+{% extends "public/templates/public.html" %}
+<!--  -->
+{% block title %}Home{% endblock %}
+<!--  -->
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Gallery</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Thumbnail Gallery</h1>
+        </div>
+        {{video_names}}
+        <hr /> {% for image_name in image_names %}
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <img class="img-responsive" src=" {{url_for('get_gallery', filename=video_names)}}" />
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
