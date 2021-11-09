@@ -5,6 +5,7 @@ from app._init_ import app
 #this api route is just a protocol shows how to gisplay flask in react
 #this can be change, or delete
 @app.route('/api',methods=['GET'] )
+@cross_origin()
 def index():
     return {
         "article":       "Welcome to heroku-this is the reply from Flask",

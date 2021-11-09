@@ -4,7 +4,7 @@ import pprint
 import math
 import json
 
-save_dir = Path('output_feature')
+save_dir = Path('vid_sum/output_feature')
 
 class Config(object):
     def __init__(self, **kwargs):
@@ -52,7 +52,7 @@ def get_config(parse=False, **optional_kwargs):
     '''
 
     # Load default parameters from file
-    with open('video_summary/default_params.json', 'r') as f:
+    with open('vid_sum/video_summary/default_params.json', 'r') as f:
         default_params = json.load(f)
 
     parser = argparse.ArgumentParser()

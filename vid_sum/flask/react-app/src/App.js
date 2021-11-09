@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <Deploy state={state} />
+      <Deploy state={state} />{" "}
     </div>
   );
 }

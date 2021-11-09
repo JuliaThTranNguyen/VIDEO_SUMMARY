@@ -35,12 +35,12 @@ def main(video_path, duration = -1):
     # evaluation
     solver = Solver(config, train_loader, test_loader)
     solver.build()
-    solver.load_model('models/epoch-84.pkl')
+    solver.load_model('vid_sum/models/epoch-84.pkl')
     solver.evaluate(-1)
 
     # 3rd step: generate video
     # generate video
-    score_path = 'output_feature/custom_video/scores/split' + str(config.split_index) + '/custom_video_-1.json'
+    score_path = 'vid_sum/output_feature/custom_video/scores/split' + str(config.split_index) + '/custom_video_-1.json'
     generate_video(score_path, save_path, video_path, duration)
 
 if __name__ == "_main_":
