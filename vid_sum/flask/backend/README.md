@@ -5,15 +5,16 @@
 
 ### Code editer framework which I used in this project "Visual Studio Code"
 
-### Visit at "https://code.visualstudio.com/"
+ Visit at "https://code.visualstudio.com/"
+ 
 
 ### Install Python version for VScode
+ Visit at "https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-python-and-flask-development-environment"
 
-### Visit at "https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-python-and-flask-development-environment"
-
-### Or Visit this link "https://phoenixnap.com/kb/install-flask"
-
-### Python version for OS X, WINDOWS, LINUX
+ Or Visit this link "https://phoenixnap.com/kb/install-flask"
+ 
+ These link above have the available version for Python on OS X, WINDOWS, LINUX OS based system.
+ 
 
 ## Create Flask application
 
@@ -78,7 +79,8 @@ $ python run.py
 
 ### To change config as your wish
 
-## How to run test cases
+
+## How to run test cases?
 
 ## Noticed : These test cases are located in /vid_sum/flask/vid_sum/backend/app/tests/
 
@@ -93,6 +95,7 @@ Run on WINDOWS:
 <pre>
 $ python test_app.py
 </pre>
+
 
 ## This action should be activate within /vid_sum/flask/backend/vid_sum
 
