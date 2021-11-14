@@ -6,15 +6,17 @@ import os
 import pafy
 import urllib.request
 
-	
-#'download' route
-@app.route('/download_vid', methods=['POST', 'GET'])
-def download():
-	return render_template('public/download.html')
+# app.config["Static_download"]="/vid_sum/flask/backend/vid_sum/output_video/"
+# app.config["SAVE_PATH"] = "/vid_sum/flask/backend/app/static/download"
 
-def checking_video():
+
+@app.route('/download_video')
+def download_form():
+    	return render_template("public/download.html")
+
+@app.route('/download_video',  methods=['GET', 'POST'])
+def up_download_video():
     if request.method == 'POST':
-		
 		# check if the post request has the file part
 	    if 'file' not in request.files:
 		    flash('No file part')
@@ -25,17 +27,17 @@ def checking_video():
 		    return redirect(request.url)
 	    else:
 		    filename = secure_filename(file.filename)
-		    flash('File : ' + filename + 'Ready to download !')
-		    return redirect(url_for('.download_vid') + filename, code=301)
-	
+		    file.save(os.path.join(app.config['DOWNLOAD_FOLDER'], filename))
+		    flash('Video successfully uploaded and displayed below .Upload_video filename: ' + filename)
+		    return render_template("public/download.html", filename=filename)
+    return render_template("public/download.html")
 
 
-def download_vid(filename):
-	if request.method == 'GET':
 
+#'display -video ' route
+@app.route('/download_video/<filename>')
+def play_video(filename):
+	return redirect(url_for('static', filename='download/' + filename), code=301)
 
- 		return 'nothing done yet'
-def send_video(filename):
-    download = os.path.join(APP_ROOT, app.config['DOWNLOAD_PATH'])
-    return send_from_directory(directory=download, filename=filename)
-
+if __name__ == "__main__":
+    pass

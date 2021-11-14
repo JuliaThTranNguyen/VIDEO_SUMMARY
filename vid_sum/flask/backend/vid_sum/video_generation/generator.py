@@ -9,7 +9,6 @@ import decord
 import cv2
 import moviepy.editor as mpe
 from pydub import AudioSegment
-
 from vid_sum.evaluation.generate_summary import generate_summary
 
 def generate_video(score_path, metadata_path, video_path, duration=-1):
@@ -98,7 +97,7 @@ def generate_video(score_path, metadata_path, video_path, duration=-1):
             vid_writer.release()
 
             # combine video and audio
-            input_video = mpe.VideoFileClip('vid_sum/output_video/' + video_name)
+            input_video = mpe.VideoFileClip('vid_sum/output_video/'+ video_name)
             input_audio = mpe.AudioFileClip('vid_sum/output_video/' + audio_name)
 
             output_video = input_video.set_audio(input_audio)
@@ -108,5 +107,5 @@ def generate_video(score_path, metadata_path, video_path, duration=-1):
                 audio_codec='aac',
             )
 
-            os.remove('vid_sum/output_video/' + video_name)
-            os.remove('vid_sum/output_video/' + audio_name)
+            os.remove( 'vid_sum/output_video/' + video_name)
+            os.remove( 'vid_sum/output_video/' + audio_name)

@@ -7,7 +7,8 @@ from flask_cors import CORS #comment this on deployment
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLD = 'static/uploads/'
-DOWNLOAD_FOLD = 'static/download/'
+DOWNLOAD_FOLD = 'static/download'
+
 
 UPLOADS_PATH = os.path.join(APP_ROOT, UPLOAD_FOLD)
 DOWNLOAD_PATH = os.path.join(APP_ROOT, DOWNLOAD_FOLD)
@@ -23,7 +24,7 @@ app = Flask(__name__)
 CORS(app)
 app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_PATH
+app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
 app.config['MAX_CONTENT_LENGTH'] =  2024 * 2024 * 2024
 
@@ -34,9 +35,9 @@ app.config.update(
 )
 
 
-from app import routing
-from app import testing_with_react
+from app import uploads
 from app import download
+from app import gallery
 
 
 

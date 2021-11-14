@@ -1,3 +1,4 @@
+
 # views --contains all of the view for website routing
 from flask.templating import render_template_string
 import os
@@ -21,7 +22,6 @@ def upload_form():
 @app.route('/uploads',  methods=['GET', 'POST'])
 def upload_video():
     if request.method == 'POST':
-		
 		# check if the post request has the file part
 	    if 'file' not in request.files:
 		    flash('No file part')
@@ -35,14 +35,16 @@ def upload_video():
 		    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 		    summarise_module.main( UPLOAD_FOLDER + filename ,  )
 		    flash('Video successfully uploaded and displayed below .Upload_video filename: ' + filename)
-		    return render_template('public/upload.html', filename=filename)
+		    return render_template("public/upload.html", filename=filename)
+    return render_template("public/upload.html")
 
 
-			
 
 #'display -video ' route
 @app.route('/uploads/<filename>')
 def display_video(filename):
 	#print('display_video filename: ' + filename)
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
-	
+
+if __name__ == "__main__":
+    pass

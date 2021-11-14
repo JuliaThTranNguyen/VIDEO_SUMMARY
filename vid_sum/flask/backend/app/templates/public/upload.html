@@ -26,7 +26,7 @@
 <div style="margin: 10px auto;">
     <video autoplay="autoplay" controls="controls" preload="preload">
 			<source src="{{ url_for('display_video', filename=filename) }}" type="video/mp4"></source>
-		</video>
+	</video>
 </div>
 {% endif %}
 <form method="post" action="/uploads" enctype="multipart/form-data">
@@ -35,14 +35,20 @@
             <input type="file" name="file" autocomplete="off" required>
         </p>
     </dl>
-    <p>
-        <input type="submit" value="Upload">
-    </p>
-    <p>
-        <input type="submit" value="Process On">
-    </p>
+
+    <form name="myForm" action="" method="post" onsubmit="">
+        <p>
+            <!-- <form action="/cgi-bin/Button.py" method="post" target="_blank">
+                <input type="radio" name="subject" value="-1" /> 15%
+                <input type="radio" name="subject" value="1" /> auto
+
+            </form> -->
+            <input type="submit" value="Upload"> <br>
+        </p>
+    </form>
+
 </form>
-<form method="get" action="download_vid">
+<form method="get" action="download_video">
     <button type="submit">To Download Page</button>
 </form>
 
