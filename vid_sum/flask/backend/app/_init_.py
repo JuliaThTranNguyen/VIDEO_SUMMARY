@@ -37,7 +37,6 @@ app.config.update(
 
 from app import uploads
 from app import download
-from app import gallery
 
 
 
