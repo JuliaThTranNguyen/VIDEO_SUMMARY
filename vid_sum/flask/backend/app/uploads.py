@@ -1,14 +1,9 @@
-
-# views --contains all of the view for website routing
 from flask.templating import render_template_string
 import os
-import urllib.request
-from flask import Flask, flash, request, redirect, url_for, render_template, send_from_directory
-import pafy
+from flask import  flash, request, redirect, url_for, render_template, send_file
 from werkzeug.utils import secure_filename
-from app._init_ import app, ALLOWED_EXTENSIONS, APP_ROOT,UPLOAD_FOLDER
+from app._init_ import app, ALLOWED_EXTENSIONS, APP_ROOT,UPLOAD_FOLDER, DOWNLOAD_FOLDER
 import vid_sum.evaluate as summarise_module
-
 
 ##ALLOWED_FILE - uppercase and lower case letter
 def allowed_file(filename):
@@ -18,28 +13,28 @@ def allowed_file(filename):
 @app.route('/')
 def upload_form():
     	return render_template("public/upload.html")
-
 @app.route('/uploads',  methods=['GET', 'POST'])
 def upload_video():
-    if request.method == 'POST':
+	if request.method == 'POST':
+		
 		# check if the post request has the file part
-	    if 'file' not in request.files:
-		    flash('No file part')
-		    return redirect(request.url)
-	    file = request.files['file']
-	    if file.filename == '':
-		    flash('No image selected for uploading')
-		    return redirect(request.url)
-	    else:
-		    filename = secure_filename(file.filename)
-		    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-		    summarise_module.main( UPLOAD_FOLDER + filename ,  )
-		    flash('Video successfully uploaded and displayed below .Upload_video filename: ' + filename)
-		    return render_template("public/upload.html", filename=filename)
-    return render_template("public/upload.html")
+		if 'file' not in request.files:
+			flash('No file part')
+			return redirect(request.url)
+		file = request.files['file']
+		if file.filename == '':
+			flash('No image selected for uploading')
+			return redirect(request.url)
+		else:
+			filename = secure_filename(file.filename)
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			option = int(request.form['options'])
+			summarise_module.main( UPLOAD_FOLDER + filename ,  option)
+			result_path = APP_ROOT + "/../vid_sum/output_video/fin_"+ filename 
+			flash('Video successfully uploaded and displayed below .Upload_video filename: ' + filename)
+			return send_file(result_path, as_attachment = True)
 
-
-
+		
 #'display -video ' route
 @app.route('/uploads/<filename>')
 def display_video(filename):
