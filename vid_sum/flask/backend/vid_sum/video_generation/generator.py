@@ -67,7 +67,7 @@ def generate_video(score_path, metadata_path, video_path, duration=-1):
 
             vid_writer = cv2.VideoWriter(
                 'vid_sum/output_video/' + video_name,
-                cv2.VideoWriter_fourcc(*'MP4V'),
+                cv2.VideoWriter_fourcc(*'mp4v'),
                 fps,
                 (frame_width, frame_height)
             )
