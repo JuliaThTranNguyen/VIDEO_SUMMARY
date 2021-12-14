@@ -1,9 +1,9 @@
-{% extends "public/templates/public.html" %}
+{% extends "/public/templates/public.html" %}
 <!--  -->
 {% block title %}Home{% endblock %}
 <!--  -->
 {% block main %}
-
+<div id="loading"></div>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -11,8 +11,8 @@
         </div>
     </div>
 </div>
-<title>Python Flask - Video Upload and Play </title>
-<h2>Select a video to upload and play</h2>
+<title>Python Flask - Video Upload and Summarise </title>
+<h2>Select a video to upload </h2>
 <p>
     {% with messages = get_flashed_messages() %} {% if messages %}
     <ul>
@@ -29,26 +29,29 @@
 	</video>
 </div>
 {% endif %}
+
 <form method="post" action="/uploads" enctype="multipart/form-data">
     <dl>
         <p>
             <input type="file" name="file" autocomplete="off" required>
         </p>
         <p>
-            <input type="radio" name="options" id="option1" value="-1"> 15% of original length</input><br>
-            <input type="radio" name="options" id="option2" value="15"> 15 seconds </input><br>
-            <input type="radio" name="options" id="option3" value="30"> 30 seconds </input><br>
-            <input type="radio" name="options" id="option4" value="60"> 60 seconds </input><br>
-            <input type="radio" name="options" id="option5" value="120"> 120 seconds </input><br>
+            <input type="radio" name="options" id="option1" value="-1" autocomplete="off" required> 15% of original length</input><br>
+            <input type="radio" name="options" id="option2" value="15" autocomplete="off" required> 15 seconds </input><br>
+            <input type="radio" name="options" id="option3" value="30" autocomplete="off" required> 30 seconds </input><br>
+            <input type="radio" name="options" id="option4" value="60" autocomplete="off" required> 60 seconds </input><br>
+            <input type="radio" name="options" id="option5" value="120" autocomplete="off" required> 120 seconds </input><br>
         </p>
     </dl>
 
-    <input type="submit" value="Upload"> <br>
-</form>
-<form method="get" action="download_video">
-    <button type="submit">To Download Page</button>
+    <button type="submit"  onclick="loading();">Upload</button>
+   
 </form>
 
 </p>
 </form>
+<form method="get" action="/display_video" >
+    <button type="submit" >To Display Video</button>
+</form>
+
 {% endblock %}

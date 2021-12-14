@@ -3,7 +3,7 @@ from os.path import join, dirname, realpath
 import os
 from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS #comment this on deployment
-
+from flask_bootstrap import Bootstrap
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLD = 'static/uploads/'
@@ -20,8 +20,12 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4'}
 
 APP_ROOT =os.path.dirname(os.path.abspath(__file__))
 
+
+
 app = Flask(__name__)
+Bootstrap(app)
 CORS(app)
+
 app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
@@ -37,6 +41,7 @@ app.config.update(
 
 from app import uploads
 from app import download
+from app import about
 
 
 

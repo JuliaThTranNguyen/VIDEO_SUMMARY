@@ -11,11 +11,9 @@
         </div>
     </div>
 </div>
-<title>Python Flask - Video Upload and Play Example</title>
-<h2>Select a video to download and play</h2>
-<h6>Note that: This file will be fetch back from AI core and auto saved in /app/static/download</br>
-    Video can be found atroute address: "/download/_video_name_.mp4/"
-</h6>
+<title>Video Display</title>
+<h2>Select a video to play </h2>
+
 <p>
     {% with messages = get_flashed_messages() %} {% if messages %}
     <ul>
@@ -32,7 +30,7 @@
 	</video>
 </div>
 {% endif %}
-<form method="post" action="/download_video" enctype="multipart/form-data">
+<form method="post" action="/display_video" enctype="multipart/form-data">
     <dl>
         <p>
             <input type="file" name="file" autocomplete="off" required>
@@ -41,17 +39,12 @@
 
     <form name="downloadForm" action="" method="post" onsubmit="">
         <p>
-            <!-- <form action="/cgi-bin/Button.py" method="post" target="_blank">
-                <input type="radio" name="subject" value="-1" /> 15%
-                <input type="radio" name="subject" value="1" /> auto
-
-            </form> -->
-            <input type="submit" value="Download"> <br>
+            <input type="submit" value="Display"> <br>
         </p>
     </form>
 
 </form>
-<a class="nav-link" href="/">Home</a>
+
 
 <!--  -->
 {% endblock %}

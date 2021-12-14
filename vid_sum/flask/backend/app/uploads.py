@@ -13,6 +13,7 @@ def allowed_file(filename):
 @app.route('/')
 def upload_form():
     	return render_template("public/upload.html")
+		
 @app.route('/uploads',  methods=['GET', 'POST'])
 def upload_video():
 	if request.method == 'POST':
@@ -31,15 +32,11 @@ def upload_video():
 			option = int(request.form['options'])
 			summarise_module.main( UPLOAD_FOLDER + filename ,  option)
 			result_path = APP_ROOT + "/../vid_sum/output_video/fin_"+ filename 
-			flash('Video successfully uploaded and displayed below .Upload_video filename: ' + filename)
+			flash('Video  ' + filename + ' successfully uploaded !')
 			return send_file(result_path, as_attachment = True)
+	
 
-		
-#'display -video ' route
-@app.route('/uploads/<filename>')
-def display_video(filename):
-	#print('display_video filename: ' + filename)
-	return redirect(url_for('static', filename='uploads/' + filename), code=301)
+
 
 if __name__ == "__main__":
     pass
